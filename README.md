@@ -1,2 +1,3 @@
-# zbos
-Just a hobby operating system I have been working on
+# zbOS
+
+zbOS is a 16-bit hobby operating system I have been building.
