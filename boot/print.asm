@@ -22,37 +22,35 @@ _endloop_str:
     popa                    ; pop registers and return
     ret
 
-
 ; Print an arbitrary 16-bit word as hex
 ; Data to printed is expected in dx
 print_hex:
     pusha
 
     mov si, HEX_MAP         ; initialise hex map address
-    mov di, HEX_OUT         ; initialise destination address
-    add di, 1               ; don't overwrite '0x'
+    mov di, HEX_OUT+2       ; initialise destination address
 
     mov bx, dx              ; first character
     shr bx, 12
     mov al, [si+bx]
-    mov [di+bx], al
+    mov [di], al
 
     mov bx, dx              ; second character
     shr bx, 8
     and bx, 0x0f
     mov al, [si+bx]
-    mov [di+bx], al
+    mov [di+1], al
 
     mov bx, dx              ; third character
     shr bx, 4
     and bx, 0x0f
     mov al, [si+bx]
-    mov [di+bx], al
+    mov [di+2], al
 
     mov bx, dx              ; fourth character
     and bx, 0x0f
     mov al, [si+bx]
-    mov [di+bx], al
+    mov [di+3], al
 
     mov bx, HEX_OUT         ; print
     call print_str
@@ -60,5 +58,7 @@ print_hex:
     popa
     ret
 
-HEX_MAP: db '0123456789ABCDE'
-HEX_OUT: db '0x0000', 0
+HEX_MAP:
+    db '0123456789ABCDEF'
+HEX_OUT:
+    db '0x????', 0
