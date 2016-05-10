@@ -8,19 +8,19 @@
 disk_read:
     push dx
 
-    mov ah, 0x02                 ; BIOS disk read interrupt
+    mov ah, 0x02                ; BIOS disk read interrupt
     mov al, dh
-    mov ch, 0x00                 ; cylinder 0
-    mov dh, 0x00                 ; head 0
-    mov cl, 0x02                 ; sector 2, the one after boot sector
+    mov ch, 0x00                ; cylinder 0
+    mov dh, 0x00                ; head 0
+    mov cl, 0x02                ; sector 2, the one after boot sector
 
     int 0x13
 
-    jc disk_error
+    jc disk_error               ; err if carry flag is set
 
     pop dx
     cmp dh, al
-    jne disk_error
+    jne disk_error              ; err if different number of blocks could be read
 
     ret
 

@@ -8,21 +8,22 @@ mov sp, bp
 mov bx, HELLO_MSG                               ; print welcome message
 call print_str
 
+call pm_switch
+
 mov bx, 0x9000                                  ; read disk
 mov dh, 2
 mov dl, [BOOT_DISK]
 call disk_read
 
-mov dx, [0x9000]
-call print_hex
-
-mov dx, [0x9000+512]
+mov dx, [0x9000]                                ; disk check
 call print_hex
 
 jmp $
 
 %include "print.asm"
 %include "disk.asm"
+%include "gdt.asm"
+%include "pm.asm"
 
 BOOT_DISK:
     db 0
