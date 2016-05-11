@@ -22,6 +22,7 @@ _endloop_str:
     popa                    ; pop registers and return
     ret
 
+
 ; Print an arbitrary 16-bit word as hex
 ; Data to printed is expected in dx
 print_hex:
@@ -62,3 +63,28 @@ HEX_MAP:
     db '0123456789ABCDEF'
 HEX_OUT:
     db '0x????', 0
+
+
+; Print in 32bit protected mode
+; Address of string to be printed is expected in ebx
+[bits 32]
+print_pm_str:
+    pusha
+    mov edx, 0xb8000        ; video memory address
+
+_loop_pm_str:
+    mov al, [ebx]           ; char
+    mov ah, 0x0f            ; char property - white on black background
+
+    cmp al, 0
+    je _endloop_pm_str
+    
+    mov [edx], ax           ; store the char at current cell
+    add ebx, 1              ; next char
+    add edx, 2              ; next cell
+
+    jmp _loop_pm_str
+
+_endloop_pm_str:
+    popa
+    ret
