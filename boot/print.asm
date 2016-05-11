@@ -1,7 +1,8 @@
 ; Routines to handle printing to screen
-
 ; Print a NULL terminated string
 ; Address of string to be printed is expected in bx
+[bits 16]
+
 print_str:
     pusha                   ; push registers to stack
     mov ah, 0x0e            ; write character in tty mode
@@ -21,7 +22,6 @@ _loop_str:
 _endloop_str:
     popa                    ; pop registers and return
     ret
-
 
 ; Print an arbitrary 16-bit word as hex
 ; Data to printed is expected in dx
@@ -64,10 +64,10 @@ HEX_MAP:
 HEX_OUT:
     db '0x????', 0
 
-
 ; Print in 32bit protected mode
 ; Address of string to be printed is expected in ebx
 [bits 32]
+
 print_pm_str:
     pusha
     mov edx, 0xb8000        ; video memory address

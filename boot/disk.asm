@@ -4,6 +4,7 @@
 ;   dl: disk to read (0-indexed)
 ;   dh: number of sectors to read
 ;   es: destination offset
+[bits 16]
 
 disk_read:
     push dx
@@ -29,5 +30,6 @@ disk_error:
     call print_str
     jmp $
 
-DISK_ERROR_MSG: db 'Error reading disk!', 0
+DISK_ERROR_MSG:
+    db 'Error reading disk!', 13, 10, 0
 

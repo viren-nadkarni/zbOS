@@ -25,6 +25,3 @@ pm_init:
 
     call pm_begin
 
-pm_begin:
-    ; do something
-    jmp $
