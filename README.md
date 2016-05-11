@@ -2,11 +2,12 @@
 
 zbOS is a hobby operating system I have been building from scratch.
 
-## What's been done:
+### What's been done:
 
-- A custom bootloader capable of loading to 32bit protected mode (might switch to GRUB altogether in future)
+- A custom bootloader capable of switching to 32-bit protected mode and bootstrapping a kernel
+- A very basic kernel that just prints a character on the screen
 
-## Resources:
+### Resources:
 
-- [OSDev.org](https://wiki.osdev.org)
+- [OSDev.org](http://wiki.osdev.org)
 

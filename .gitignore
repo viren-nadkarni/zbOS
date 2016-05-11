@@ -36,3 +36,7 @@
 [._]s[a-w][a-z]
 .netrwhist
 *~
+
+# builds
+*.img
+*.bin
