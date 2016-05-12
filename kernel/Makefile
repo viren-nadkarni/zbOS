@@ -1,7 +1,11 @@
+SOURCES = $(wildcard *.c)
+HEADERS = $(wildcard *.h)
+OBJ = ${SOURCES:.c=.o}
+
 all: kernel.img
 
-kernel.o: kernel.c
-	gcc -ffreestanding -c -o kernel.o kernel.c
+%.o: %.c ${HEADERS}
+	gcc -std=c99 -ffreestanding -c $< -o $@
 
-kernel.img: kernel.o
-	ld -Ttext 0x1000 --oformat binary -o kernel.img kernel.o
+kernel.img: kernel.o ${OBJ}
+	ld -Ttext 0x1000 --oformat binary -o $@ $^

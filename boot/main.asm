@@ -24,7 +24,7 @@
 
 load_kernel:
     mov bx, KERNEL_OFFSET
-    mov dh, 1
+    mov dh, 16
     mov dl, [BOOT_DISK]
     call disk_read
 
