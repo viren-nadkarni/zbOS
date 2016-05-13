@@ -1,0 +1,4 @@
+floppya: 1_44=build/zbos.img, status=inserted
+boot: a
+display_library: sdl
+

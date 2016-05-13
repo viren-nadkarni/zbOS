@@ -1,7 +1,12 @@
 all: zbos.img
 
-run: zbos.img
-	/usr/bin/qemu-system-x86_64 build/zbos.img
+run: qemu
+
+qemu: zbos.img
+	/usr/bin/qemu-system-i386 build/zbos.img
+
+bochs: zbos.img
+	/usr/bin/bochs
 
 clean:
 	find . -iname "*.img" -o -iname "*.bin" -o -iname "*.o" | xargs rm -v
