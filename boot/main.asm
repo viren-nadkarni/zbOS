@@ -9,9 +9,6 @@
     mov bx, HELLO_MSG
     call print_str
 
-    mov bx, REAL_MODE_MSG
-    call print_str
-
     mov bx, LOAD_KERNEL_MSG
     call print_str
     call load_kernel
@@ -33,9 +30,6 @@ load_kernel:
 [bits 32]
 
 pm_begin:
-   mov ebx, PM_SUCCESS_MSG
-   call print_pm_str
-
    jmp KERNEL_OFFSET
 
 
@@ -45,17 +39,11 @@ BOOT_DISK:
 HELLO_MSG:
     db 'Welcome to zbOS!', 13, 10, 0
 
-REAL_MODE_MSG:
-    db 'Starting in 16-bit real mode...', 13, 10, 0
-
-PROT_MODE_MSG:
-    db 'Attempting to switch to 32-bit protected mode...', 13, 10, 0
-
 LOAD_KERNEL_MSG:
     db 'Loading kernel...', 13, 10, 0
 
-PM_SUCCESS_MSG:
-    db 'ZB!!!', 0
+PROT_MODE_MSG:
+    db 'Switching to protected mode...', 13, 10, 0
 
 %include "print.asm"
 %include "disk.asm"

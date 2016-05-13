@@ -19,8 +19,8 @@
 #define VGA_LIGHT_WHITE 15
 
 #define VGA_WIDTH 80
-#define VGA_HEIGHT 24
+#define VGA_HEIGHT 25
 
-#define VGA_MEMORY 0xB8000
+#define VGA_MEMORY 0xb8000
 
 #endif

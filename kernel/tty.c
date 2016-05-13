@@ -7,13 +7,30 @@ void term_init() {
  *  initialise the terminal by clearing the screen
  */
 
-    unsigned int* cell = (unsigned int*) VGA_MEMORY;
+    char* cell = (char*) VGA_MEMORY;
 
     for(int i=0; i<VGA_HEIGHT; ++i) {
         for(int j=0; j<VGA_WIDTH; ++j) {
-            *cell++ = ' ';
-            *cell++ = VGA_BLACK;
+            *cell = ' ';
+            cell++;
+            *cell = VGA_BLACK;
+            cell++;
         }
     }
 }
 
+
+void term_putchar(char ch) {
+/* term_putchar
+ * ------------
+ *  print a single character on the screen
+ *
+ *  ch: character to print
+ */
+
+    char* cell = (char*) VGA_MEMORY;
+    
+    *cell = ch;
+    cell++;
+    *cell = VGA_LIGHT_GREY;
+}

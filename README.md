@@ -7,7 +7,12 @@ zbOS is a hobby operating system I have been building from scratch.
 - [x] A custom bootloader capable of switching to 32-bit protected mode and bootstrapping a kernel
 - [x] A basic kernel
 - [ ] libc implementation
-- [ ] Device and filesystem drivers
+- [ ] Device drivers
+  - [ ] video
+  - [ ] keyboard
+  - [ ] filesystem
+- [ ] Memory management
+- [ ] Process management
 
 ### Getting started
 
@@ -19,4 +24,5 @@ zbOS is a hobby operating system I have been building from scratch.
 ### Resources:
 
 - [OSDev.org](http://wiki.osdev.org) :point_left: this is all you need
+- [linux-insides](https://github.com/0xAX/linux-insides) how linux works
 

@@ -1,12 +1,12 @@
-all: zbos
+all: zbos.img
 
-run: zbos
+run: zbos.img
 	/usr/bin/qemu-system-x86_64 build/zbos.img
 
 clean:
 	find . -iname "*.img" -o -iname "*.bin" -o -iname "*.o" | xargs rm -v
 
-zbos: kernel.img boot.img
+zbos.img: kernel.img boot.img
 	mkdir -p build
 	dd if=/dev/zero of=build/zero.img bs=64K count=1
 	cat boot/boot.img kernel/kernel.img build/zero.img > build/zbos.img
