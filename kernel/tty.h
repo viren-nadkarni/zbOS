@@ -1,10 +1,15 @@
 #ifndef TTY_H
 #define TTY_H
-#include <stddef.h>
 
 void term_init(void);
-void term_putchar(char c);
-void term_write(const char* data, size_t size);
-void term_writestr(const char* data);
+
+void term_putchar(char);
+void term_putstr(char*);
+
+void term_setcursor(int, int);
+void term_getcursor(int*, int*);
+
+unsigned char inb(unsigned short);
+void outb(unsigned short, unsigned char);
 
 #endif

@@ -2,6 +2,8 @@ all: zbos.img
 
 run: qemu
 
+debug: bochs
+
 qemu: zbos.img
 	/usr/bin/qemu-system-i386 build/zbos.img
 

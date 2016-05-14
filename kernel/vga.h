@@ -1,22 +1,22 @@
 #ifndef VGA_H
 #define VGA_H
 
-#define VGA_BLACK 0
-#define VGA_BLUE 1
-#define VGA_GREEN 2
-#define VGA_CYAN 3
-#define VGA_RED 4
-#define VGA_MAGENTA 5
-#define VGA_BROWN 6
-#define VGA_LIGHT_GREY 7
-#define VGA_DARK_GREY 8
-#define VGA_LIGHT_BLUE 9
-#define VGA_LIGHT_GREEN 10
-#define VGA_LIGHT_CYAN 11
-#define VGA_LIGHT_RED 12
-#define VGA_LIGHT_MAGENTA 13
-#define VGA_LIGHT_BROWN 14
-#define VGA_LIGHT_WHITE 15
+#define VGA_BLACK 0x00
+#define VGA_BLUE 0x01
+#define VGA_GREEN 0x02
+#define VGA_CYAN 0x03
+#define VGA_RED 0x04
+#define VGA_MAGENTA 0x05
+#define VGA_BROWN 0x06
+#define VGA_GREY 0x07
+#define VGA_DARK_GREY 0x08
+#define VGA_BRIGHT_BLUE 0x09
+#define VGA_BRIGHT_GREEN 0x0a
+#define VGA_BRIGHT_CYAN 0x0b
+#define VGA_BRIGHT_RED 0x0c
+#define VGA_BRIGHT_MAGENTA 0x0d
+#define VGA_YELLOW 0x0e
+#define VGA_WHITE 0x0f
 
 #define VGA_WIDTH 80
 #define VGA_HEIGHT 25
