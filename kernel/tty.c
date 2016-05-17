@@ -1,5 +1,6 @@
 #include "vga.h"
 #include "tty.h"
+#include "io.h"
 
 #include <stdint.h>
 
@@ -90,19 +91,5 @@ void term_getcursor(int* row, int* col)
 
     *col = position % 80;
     *row = position / 80;
-}
-
-
-void outb(unsigned short port, unsigned char val) {
-    asm volatile ("outb %0, %1" : : "a"(val), "Nd"(port));
-}
-
-
-unsigned char inb(unsigned short port) {
-    unsigned char val;
-
-    asm volatile ("inb %1, %0" : "=a"(val) : "Nd"(port));
-
-    return val;
 }
 

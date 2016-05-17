@@ -5,14 +5,14 @@ zbOS is a hobby operating system I have been building from scratch.
 ### What's been done:
 
 - [x] A custom bootloader capable of switching to 32-bit protected mode and bootstrapping a kernel
-- [x] A basic kernel
-- [ ] libc implementation
+- [ ] \(wip) A monolithic kernel
+- [ ] \(wip) libc implementation
 - [ ] Device drivers
-  - [ ] video
-  - [ ] keyboard
+  - [ ] \(wip) video
+  - [ ] \(wip) keyboard
   - [ ] filesystem
 - [ ] Memory management
-- [ ] Process management
+- [ ] Process scheduling
 
 ### Getting started
 
