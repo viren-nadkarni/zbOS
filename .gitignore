@@ -30,6 +30,7 @@
 
 # Debug files
 *.dSYM/
+bochs.out
 
 # vim files
 [._]*.s[a-w][a-z]
