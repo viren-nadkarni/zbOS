@@ -1,4 +1,4 @@
-#include "tty.h"
+#include "scr.h"
 #include "kbd.h"
 
 void kmain() {

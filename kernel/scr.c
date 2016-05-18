@@ -1,5 +1,5 @@
 #include "vga.h"
-#include "tty.h"
+#include "scr.h"
 #include "io.h"
 
 
@@ -12,7 +12,7 @@ void term_init() {
 
 
 void term_clear() {
-    volatile char* cell = (volatile char*) VGA_MEMORY;
+    volatile uint8* cell = (volatile uint8*) VGA_MEMORY;
 
     for(int i = 0; i < VGA_HEIGHT*VGA_WIDTH; i++) {
         /* fill the VGA array with spaces. This will, in effect clear the
@@ -32,9 +32,9 @@ void term_putstr(char* string) {
      * - escapes
      */
 
-    volatile char* cell = (volatile char*) VGA_MEMORY;
-    volatile char cursor_offset;
-    int row, col;
+    volatile uint8* cell = (volatile uint8*) VGA_MEMORY;
+    volatile uint8 cursor_offset;
+    uint8 row, col;
 
     term_getcursor(&row, &col);
     cursor_offset = (row * VGA_HEIGHT) + col + 1;
@@ -97,21 +97,21 @@ void term_putstr(char* string) {
 }
 
 
-void term_setcursor(int row, int col)
+void term_setcursor(uint8 row, uint8 col)
 {
-    unsigned short position = (row * VGA_WIDTH) + col;
+    uint8 position = (row * VGA_WIDTH) + col;
               
     outb(0x3D4, 0x0F);
-    outb(0x3D5, (unsigned char)(position & 0xFF));
+    outb(0x3D5, (uint8)(position & 0xFF));
 
     outb(0x3D4, 0x0E);
-    outb(0x3D5, (unsigned char)((position >> 8) & 0xFF));
+    outb(0x3D5, (uint8)((position >> 8) & 0xFF));
 }
 
 
-void term_getcursor(int* row, int* col)
+void term_getcursor(uint8* row, uint8* col)
 {
-    unsigned short position;
+    uint8 position;
               
     outb(0x3D4, 0x0E);
     position = (inb(0x3D5) << 8) & 0x00;
