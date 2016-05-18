@@ -2,7 +2,6 @@
 #include "scr.h"
 #include "io.h"
 
-
 uint16 cursor_offset = 0;
 
 void term_init() {
@@ -11,7 +10,6 @@ void term_init() {
     /* set the cursor to the first line */
     term_setcursor(0, 0);
 }
-
 
 void term_clear() {
     volatile uint8* cell = (volatile uint8*) VGA_MEMORY;
@@ -22,16 +20,18 @@ void term_clear() {
          */
         *cell = ' ';
         cell++;
-        *cell = (VGA_GREY << 4) | (VGA_BLACK & 0xF);
+        *cell = (VGA_BLACK << 4) | (VGA_GREY & 0xF);
+        /* background ^       foreground ^ */
         cell++;
     }
 }
 
-
 void term_putstr(char* string) {
     /* TODO:
-     * - scrolling
-     * - escapes
+     *   implement:
+     *     puthex
+     *     putdec
+     *     putoct
      */
 
     volatile uint8* cell = (volatile uint8*) VGA_MEMORY;
@@ -46,7 +46,7 @@ void term_putstr(char* string) {
      */
 
     while(*string != 0) {
-        if(*string == 0x08) {
+            if(*string == 0x08) {
             /* backspace
              * BS '\b' */
             if(cursor_offset > 0) {
@@ -81,6 +81,12 @@ void term_putstr(char* string) {
             continue;
         }
 
+        /* if we have gone past the last cell, scroll */
+        if(cursor_offset >= VGA_WIDTH * VGA_HEIGHT) {
+            cell -= 2 * VGA_WIDTH;
+            term_scroll();
+        }
+
         *cell = *string;
 
         cell += 2;
@@ -88,12 +94,11 @@ void term_putstr(char* string) {
         cursor_offset++;
     }
 
-    /* in/out to VGA is a slow operation. So update the cursor position only
+    /* in/out to VGA is a slow operation. update the cursor position only
      * after the entire string has been put in the VGA array
      */
     term_setcursor((cursor_offset / VGA_WIDTH), (cursor_offset % VGA_WIDTH));
 }
-
 
 void term_setcursor(uint8 row, uint8 col)
 {
@@ -106,9 +111,9 @@ void term_setcursor(uint8 row, uint8 col)
     outb(0x3D5, position);
 }
 
-
 void term_getcursor(uint8* row, uint8* col)
 {
+    /* possibly buggy */
     uint8 position;
 
     outb(0x3D4, 0x0E);
@@ -121,3 +126,15 @@ void term_getcursor(uint8* row, uint8* col)
     *row = position / VGA_WIDTH;
 }
 
+void term_scroll() {
+    volatile uint8* cell = (uint8*) VGA_MEMORY;
+
+    /* copy the next line to current */
+    for(int i = 0; i < 2 * VGA_HEIGHT * VGA_WIDTH; i++) {
+        *cell = *(cell + 2 * VGA_WIDTH);
+        ++cell;
+    }
+
+    /* move the cursor to the beginning of last line */
+    cursor_offset -= VGA_WIDTH;
+}

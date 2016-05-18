@@ -7,8 +7,9 @@ zbOS is a hobby operating system I have been building from scratch.
 - [x] A custom bootloader capable of switching to protected mode and bootstrapping a kernel
 - [ ] \(wip) A 32-bit monolithic POSIX kernel
 - [ ] \(wip) libc implementation
+- [ ] \(wip) Interrupt handler
 - [ ] Device drivers
-  - [ ] \(wip) video
+  - [x] video (hardware cursor, scrolling, ASCII escapes)
   - [ ] \(wip) keyboard
   - [ ] filesystem (SFS?)
 - [ ] Memory management
