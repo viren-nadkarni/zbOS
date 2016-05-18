@@ -2,6 +2,7 @@
 #define TTY_H
 
 void term_init(void);
+void term_clear(void);
 
 void term_putchar(char);
 void term_putstr(char*);

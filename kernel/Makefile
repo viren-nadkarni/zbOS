@@ -2,13 +2,13 @@ SOURCES = $(wildcard *.c)
 HEADERS = $(wildcard *.h)
 OBJ = ${SOURCES:.c=.o}
 
-all: kernel.img
+all: kernel.bin
 
 entry.o: entry.asm
-	nasm -f elf64 -o entry.o entry.asm
+	$(AS) $(ASFLAGS) -o entry.o entry.asm
 
 %.o: %.c ${HEADERS}
-	gcc -g -ffreestanding -c $< -o $@
+	$(CC) $(CCFLAGS) -o $@ $< 
 
-kernel.img: entry.o kernel.o ${OBJ}
-	ld -Ttext 0x1000 --oformat binary -o $@ $^
+kernel.bin: entry.o kernel.o ${OBJ}
+	$(LD) $(LDFLAGS) -o $@ $^

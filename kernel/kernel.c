@@ -1,5 +1,5 @@
 #include "tty.h"
-#include "vga.h"
+#include "kbd.h"
 
 void kmain() {
     term_init();

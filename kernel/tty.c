@@ -2,30 +2,38 @@
 #include "tty.h"
 #include "io.h"
 
-#include <stdint.h>
-
 
 void term_init() {
-    volatile char* cell = (volatile char*) VGA_MEMORY;
-
-    for(int i = 0; i < VGA_HEIGHT*VGA_WIDTH; i++) {
-        /* fill the VGA array with spaces. This will, in effect clear the
-         * of BIOS messages
-         */
-        *cell = ' ';
-        cell++;
-        *cell = VGA_GREY;
-        cell++;
-    }
+    term_clear();
 
     /* set the cursor to the first line */
     term_setcursor(0, 0);
 }
 
 
+void term_clear() {
+    volatile char* cell = (volatile char*) VGA_MEMORY;
+
+    for(int i = 0; i < VGA_HEIGHT*VGA_WIDTH; i++) {
+        /* fill the VGA array with spaces. This will, in effect clear the
+         * screen of BIOS messages
+         */
+        *cell = ' ';
+        cell++;
+        *cell = VGA_GREY;
+        cell++;
+    }
+}
+
+
 void term_putstr(char* string) {
-    volatile uint8_t* cell = (volatile uint8_t*) VGA_MEMORY;
-    uint8_t array_offset, cursor_offset;
+    /* TODO:
+     * - scrolling
+     * - escapes
+     */
+
+    volatile char* cell = (volatile char*) VGA_MEMORY;
+    volatile char cursor_offset;
     int row, col;
 
     term_getcursor(&row, &col);
@@ -41,13 +49,35 @@ void term_putstr(char* string) {
      */
 
     while(*string != 0) {
-        switch(*string) {
-            case '\n':
-                string++;
-                break;
-            case '\t':
-                string++;
-                break;
+        if(*string == 0x0A) {
+            /* new line
+             * LF '\n' */
+
+            cursor_offset += VGA_WIDTH;
+            cell += (2 * VGA_WIDTH);
+
+            string++;
+            continue;
+
+        } else if(*string == 0x09) {
+            /* horizontal tab
+             * HT '\t' */
+        } else if(*string == 0x08) {
+            /* backspace
+             * BS '\b' */
+            
+            if(cursor_offset > 0) {
+                cursor_offset -= 1;
+                cell -= 2;
+            }
+
+        } else if(*string == 0x0D) {
+            /* Carriage return
+             * CR '\r' */
+
+            cursor_offset -= cursor_offset % VGA_WIDTH;
+            cell -= 2 * (cursor_offset % VGA_WIDTH);
+
         }
 
         *cell = *string;
@@ -60,8 +90,8 @@ void term_putstr(char* string) {
         cursor_offset += 1;
     }
 
-    /* in out to VGA is a slow operation. So update the cursor position only
-     * after the entire string has been put in the array
+    /* in/out to VGA is a slow operation. So update the cursor position only
+     * after the entire string has been put in the VGA array
      */
     term_setcursor(cursor_offset / VGA_WIDTH, (cursor_offset % VGA_WIDTH) - 1);
 }
@@ -69,7 +99,7 @@ void term_putstr(char* string) {
 
 void term_setcursor(int row, int col)
 {
-    unsigned short position = (row * 80) + col;
+    unsigned short position = (row * VGA_WIDTH) + col;
               
     outb(0x3D4, 0x0F);
     outb(0x3D5, (unsigned char)(position & 0xFF));
@@ -84,12 +114,12 @@ void term_getcursor(int* row, int* col)
     unsigned short position;
               
     outb(0x3D4, 0x0E);
-    position = inb(0x3D5) << 8;
+    position = (inb(0x3D5) << 8) & 0x00;
 
     outb(0x3D4, 0x0F);
     position += inb(0x3D5);
 
-    *col = position % 80;
-    *row = position / 80;
+    *col = position % VGA_WIDTH;
+    *row = position / VGA_WIDTH;
 }
 

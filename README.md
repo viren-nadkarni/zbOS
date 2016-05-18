@@ -10,7 +10,7 @@ zbOS is a hobby operating system I have been building from scratch.
 - [ ] Device drivers
   - [ ] \(wip) video
   - [ ] \(wip) keyboard
-  - [ ] filesystem
+  - [ ] filesystem (SFS?)
 - [ ] Memory management
 - [ ] Process scheduling
 
