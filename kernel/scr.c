@@ -5,10 +5,14 @@
 uint16 cursor_offset = 0;
 
 void term_init() {
+    /*
     term_clear();
-
-    /* set the cursor to the first line */
     term_setcursor(0, 0);
+    */
+
+    uint8 row, col;
+    term_getcursor(&row, &col);
+    cursor_offset = row * VGA_WIDTH + col;
 }
 
 void term_clear() {
@@ -18,10 +22,12 @@ void term_clear() {
         /* fill the VGA array with spaces. This will, in effect clear the
          * screen of BIOS messages
          */
+
         *cell = ' ';
         cell++;
+
+        /*        background       foreground     */
         *cell = (VGA_BLACK << 4) | (VGA_GREY & 0xF);
-        /* background ^       foreground ^ */
         cell++;
     }
 }
@@ -113,14 +119,13 @@ void term_setcursor(uint8 row, uint8 col)
 
 void term_getcursor(uint8* row, uint8* col)
 {
-    /* possibly buggy */
-    uint8 position;
+    uint16 position = 0;
 
     outb(0x3D4, 0x0E);
-    position = (inb(0x3D5) << 8) & 0x00;
+    position = inb(0x3D5) << 8;
 
     outb(0x3D4, 0x0F);
-    position += inb(0x3D5);
+    position |= inb(0x3D5);
 
     *col = position % VGA_WIDTH;
     *row = position / VGA_WIDTH;
