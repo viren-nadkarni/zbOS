@@ -52,7 +52,7 @@ void term_putstr(char* string) {
      */
 
     while(*string != 0) {
-            if(*string == 0x08) {
+        if(*string == 0x08) {
             /* backspace
              * BS '\b' */
             if(cursor_offset > 0) {
@@ -75,6 +75,12 @@ void term_putstr(char* string) {
             cursor_offset += VGA_WIDTH;
             cell += (2 * VGA_WIDTH);
 
+            /* if we have gone past the last cell, scroll */
+            if(cursor_offset >= VGA_WIDTH * VGA_HEIGHT) {
+                cell -= 2 * VGA_WIDTH;
+                term_scroll();
+            }
+
             string++;
             continue;
         } else if(*string == 0x0D) {
@@ -86,18 +92,18 @@ void term_putstr(char* string) {
             string++;
             continue;
         }
-
-        /* if we have gone past the last cell, scroll */
-        if(cursor_offset >= VGA_WIDTH * VGA_HEIGHT) {
-            cell -= 2 * VGA_WIDTH;
-            term_scroll();
-        }
-
+ 
         *cell = *string;
 
         cell += 2;
         string++;
         cursor_offset++;
+
+         /* if we have gone past the last cell, scroll */
+        if(cursor_offset >= VGA_WIDTH * VGA_HEIGHT) {
+            cell -= 2 * VGA_WIDTH;
+            term_scroll();
+        }
     }
 
     /* in/out to VGA is a slow operation. update the cursor position only
