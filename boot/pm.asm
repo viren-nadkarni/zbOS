@@ -2,7 +2,6 @@
 
 pm_switch:
     cli                             ; disable interrupts
-    lgdt [gdt_descriptor]           ; load the gdt
 
     mov eax, cr0                    ; set the protected mode flag
     or eax, 0x0000001

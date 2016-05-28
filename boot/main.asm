@@ -13,6 +13,10 @@
     call print_str
     call load_kernel
 
+    mov bx, LOAD_GDT_MSG
+    call print_str
+    lgdt [gdt_descriptor]           ; load the gdt
+
     mov bx, PROT_MODE_MSG
     call print_str
     call pm_switch
@@ -41,6 +45,9 @@ HELLO_MSG:
 
 LOAD_KERNEL_MSG:
     db 'Loading kernel...', 13, 10, 0
+
+LOAD_GDT_MSG:
+    db 'Loading global descriptor table...', 13, 10, 0
 
 PROT_MODE_MSG:
     db 'Switching to protected mode...', 13, 10, 0
