@@ -2,6 +2,8 @@
 
 zbOS is a hobby operating system I have been building from scratch.
 
+![zbOS in Bochs](screenshot.png)
+
 ### What's been done:
 
 - [x] A custom bootloader capable of switching to protected mode and bootstrapping a kernel

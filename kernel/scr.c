@@ -112,16 +112,6 @@ void term_putstr(char* string) {
     term_setcursor((cursor_offset / VGA_WIDTH), (cursor_offset % VGA_WIDTH));
 }
 
-void term_putdec(uint32 decimal) {
-    char output[11] = "000000000\0";
-
-    for(int d=9; decimal; d--) {
-        output[d] = '0' + (decimal % 10);
-        decimal /= 10;
-    }
-    term_putstr(output);
-}
-
 void term_setcursor(uint8 row, uint8 col) {
     uint16 position = row * VGA_WIDTH + col;
 
