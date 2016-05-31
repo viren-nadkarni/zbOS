@@ -6,4 +6,5 @@ megs: 32
 mouse: enabled=0
 clock: sync=realtime
 log: bochs.out
+magic_break: enabled=1
 

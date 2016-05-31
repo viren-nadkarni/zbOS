@@ -37,11 +37,10 @@ char *exception_message[] = {
 };
 
 void fault_handler(struct stack_frame *sf) {
+    term_putstr("\r\n*** Exception. System Halted ***\r\n");
     if( (sf->interrupt_no) < 32 ) {
-        term_putstr("\r\n*** Exception. System Halted ***\r\n");
         term_putstr( exception_message[ sf->interrupt_no ] );
-
-        while(1);
     }
+    while(1);
 }
 
