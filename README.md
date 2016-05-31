@@ -1,5 +1,7 @@
 # zbOS
 
+[![Build Status](https://travis-ci.org/viren-nadkarni/zbOS.svg?branch=master)](https://travis-ci.org/viren-nadkarni/zbOS)
+
 zbOS is a hobby operating system I have been building from scratch.
 
 ![zbOS in Bochs](screenshot.png)

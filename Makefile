@@ -2,7 +2,7 @@ export CC = gcc
 export AS = nasm
 export LD = ld
 
-export CCFLAGS = -fno-builtin -m32 -Wall -nostartfiles -nostdlib -nostdinc -g -c -O0
+export CCFLAGS = -fno-builtin -m32 -Wall -nostartfiles -nostdlib -nostdinc -std=gnu99 -g -c -O0
 export ASFLAGS = -f elf32
 export LDFLAGS = -melf_i386 -Ttext 0x1000 --oformat binary
 
