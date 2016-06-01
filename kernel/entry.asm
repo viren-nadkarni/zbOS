@@ -6,9 +6,9 @@
 
 ; loads interrupt descriptor table
 [global idt_load]
+[extern idtp]
 idt_load:
-    mov eax, [esp+4]
-    lidt [eax]
+    lidt [idtp]
     ret
 
 ; common stub for interrupt service routines

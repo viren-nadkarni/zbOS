@@ -1,7 +1,7 @@
 #include "idt.h"
 #include "isr.h"
 
-extern void idt_load(uint32);
+extern void idt_load(void);
 
 struct idt_entry {
     uint16 base_low;            /* lower 16 bits of the jump address */
@@ -21,7 +21,7 @@ struct idt_ptr idtp;
 
 void idt_init() {
     idtp.length = (sizeof(struct idt_entry) * 256) - 1;
-    idtp.base = (uint32)&idt;
+    idtp.base = &idt;
 
     /* TEMP HACK: use memset instead to clear idt memory */
     uint8 *ptr = (uint8*)&idt;
@@ -64,7 +64,7 @@ void idt_init() {
     idt_setgate(31, (unsigned)isr31, 0x08, 0x8E);
 
     /* load the idt on to cpu */
-    idt_load((uint32)&idtp);
+    idt_load();
 }
 
 void idt_setgate(uint8 number, uint32 base, uint16 selector, uint8 flags) {
@@ -72,6 +72,6 @@ void idt_setgate(uint8 number, uint32 base, uint16 selector, uint8 flags) {
     idt[number].selector = selector;
     idt[number].padding = 0;
     idt[number].flags = flags;
-    idt[number].base_high = (base >> 8) & 0xFFFF;
+    idt[number].base_high = (base >> 16) & 0xFFFF;
 }
 

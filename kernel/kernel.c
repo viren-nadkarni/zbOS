@@ -8,7 +8,7 @@ void kmain() {
     term_putstr("Loading interrupt descriptor table...\r\n");
     idt_init();
 
-    asm volatile ("xchg %bx, %bx");
+//    asm volatile ("xchg %bx, %bx");
     asm volatile ("int $0x5");
 
     term_putstr("<loop>");
