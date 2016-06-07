@@ -69,4 +69,3 @@ void irq_handler(struct stack_frame *sf) {
     outb(0x20, 0x20);
 }
 
-
