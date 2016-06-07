@@ -2,22 +2,22 @@
 
 [![Build Status](https://travis-ci.org/viren-nadkarni/zbOS.svg?branch=master)](https://travis-ci.org/viren-nadkarni/zbOS)
 
-zbOS is a hobby operating system I have been building from scratch.
+zbOS is a hobby operating system being built from scratch. zbOS is intended to be a UNIX clone.
 
 ![zbOS in Bochs](screenshot.png)
 
 ### What's been done:
 
 - [x] A custom bootloader capable of switching to protected mode and bootstrapping a kernel
-- [ ] \(wip) A 32-bit monolithic POSIX kernel
-- [ ] \(wip) libc implementation
+- [ ] \(wip) a standard C library implementation (libc)
 - [x] Interrupt handler
 - [ ] Device drivers
   - [x] video (hardware cursor, scrolling, ASCII escapes)
   - [ ] \(wip) keyboard
   - [ ] filesystem (SFS?)
-- [ ] Memory management
-- [ ] Process scheduling
+- [ ] Memory management (paging, heap)
+- [ ] Process scheduling (multitasking)
+- [ ] the future (userland?)
 
 ### Getting started
 
@@ -30,7 +30,7 @@ zbOS is a hobby operating system I have been building from scratch.
 ### Resources:
 
 - [OSDev.org](http://wiki.osdev.org) :point_left: this is all you need
-- [Bran's Kernel Development Tutorial](http://www.osdever.net/bkerndev/index.php)
+- [Bran's Kernel Development](http://www.osdever.net/bkerndev/index.php)
 - [JamesM's kernel development tutorial](http://www.jamesmolloy.co.uk/tutorial_html/)
 - [linux-insides](https://github.com/0xAX/linux-insides)
 
