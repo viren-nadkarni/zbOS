@@ -72,6 +72,11 @@ void term_putstr(char* string) {
         } else if(*string == 0x0A) {
             /* new line
              * LF '\n' */
+
+            /* interpreted as '\r\n' */
+            cursor_offset -= (cursor_offset % VGA_WIDTH);
+            cell -= 2 * (cursor_offset % VGA_WIDTH);
+
             cursor_offset += VGA_WIDTH;
             cell += (2 * VGA_WIDTH);
 

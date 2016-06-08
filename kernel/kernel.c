@@ -8,12 +8,12 @@
 void kmain() {
     term_init();
 
-    term_putstr("Initialising interrupt handler...\r\n");
+    printf("Initialising interrupt handler...\n");
     idt_init();
     irq_init();
     asm volatile ("sti");
 
-    term_putstr("Initialising timer...\r\n");
+    printf("Initialising timer...\n");
     timer_init(100);
 
     /*
@@ -21,9 +21,9 @@ void kmain() {
     asm volatile ("int $0x5");
     */
 
-    printf("Hello from libc!\r\n");
+    printf("Hello from libc!\n");
 
-    term_putstr("<loop>");
+    printf("<loop>\n");
 
     while(1);
 }
