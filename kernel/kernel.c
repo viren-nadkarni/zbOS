@@ -3,6 +3,7 @@
 #include "idt.h"
 #include "irq.h"
 #include "timer.h"
+#include "stdio.h"
 
 void kmain() {
     term_init();
@@ -20,7 +21,10 @@ void kmain() {
     asm volatile ("int $0x5");
     */
 
+    printf("Hello from libc!\r\n");
+
     term_putstr("<loop>");
+
     while(1);
 }
 

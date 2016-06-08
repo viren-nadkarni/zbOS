@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/viren-nadkarni/zbOS.svg?branch=master)](https://travis-ci.org/viren-nadkarni/zbOS)
 
-zbOS is a hobby operating system being built from scratch. zbOS is intended to be a UNIX clone.
+zbOS is a UNIX-clone being built from scratch.
 
 ![zbOS in Bochs](screenshot.png)
 
@@ -30,6 +30,7 @@ zbOS is a hobby operating system being built from scratch. zbOS is intended to b
 ### Resources:
 
 - [OSDev.org](http://wiki.osdev.org) :point_left: this is all you need
+- [Nick Blundell's OpSys Lecture](https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf)
 - [Bran's Kernel Development](http://www.osdever.net/bkerndev/index.php)
 - [JamesM's kernel development tutorial](http://www.jamesmolloy.co.uk/tutorial_html/)
 - [linux-insides](https://github.com/0xAX/linux-insides)

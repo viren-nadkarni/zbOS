@@ -1,6 +1,4 @@
-#include <stdlib.h>
-
-// debugging functions. these don't work at the moment
+/* debugging functions. these don't work at the moment */
 
 #define infn(S, ...) fprintf(stderr,                                     \
   "\x1b[1m(%s:%d, %s)\x1b[0m\n  \x1b[1m\x1b[90mnote:\x1b[0m " S "\n",    \

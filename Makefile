@@ -1,13 +1,10 @@
-export CC = gcc
-export AS = nasm
-export LD = ld
-
 export CCFLAGS = -fno-builtin -m32 -Wall -nostartfiles -nostdlib -nostdinc -std=gnu99 -g -c -O0
 export ASFLAGS = -f elf32
-export LDFLAGS = -melf_i386 -Ttext 0x1000 --oformat binary
+export LDFLAGS = -melf_i386 -Ttext 0x1000 --oformat binary # -T linker.ld
 
+.PHONY: all run debug qemu bochs clean libc
 
-all: zbos.img
+all: libc zbos.img
 
 run: qemu
 
@@ -20,15 +17,20 @@ bochs: zbos.img
 	/usr/bin/bochs
 
 clean:
-	find . -iname "*.img" -o -iname "*.bin" -o -iname "*.o" | xargs rm -v
+	find . -iname "*.img" -o -iname "*.bin" -o -iname "*.o" -o -iname "*.a" | xargs rm -v
+
+libc:
+	cd libc; make
 
 zbos.img: kernel.bin boot.img
 	mkdir -p build
 	dd if=/dev/zero of=build/zero.img bs=64K count=1
 	cat boot/boot.img kernel/kernel.bin build/zero.img > build/zbos.img
+	rm build/zero.img
 
 kernel.bin:
 	cd kernel; make
 
 boot.img:
 	cd boot; make
+
