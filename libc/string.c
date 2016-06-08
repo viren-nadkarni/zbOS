@@ -24,3 +24,15 @@ char *strrev(char *string) {
     return string;
 }
 
+char *strcpy(char *dest, const char *src) {
+    char *dest_orig = dest;
+
+    while(*src != 0) {
+        *dest = *src;
+        src++;
+        dest++;
+    }
+
+    return dest_orig;
+}
+

@@ -7,6 +7,7 @@
 
 char *strrev(char*);
 int strlen(char*);
+char *strcpy(char*, const char*);
 
 #endif
 
