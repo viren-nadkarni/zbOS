@@ -1,5 +1,7 @@
 SOURCES = $(wildcard *.asm)
 
+.PHONY: all
+
 all: boot.img
 
 boot.img: ${SOURCES}

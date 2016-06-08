@@ -7,16 +7,11 @@
 #define NULL ((void *)0)
 
 /* TODO:
- * - atoi
- * - itoa
  * - rand
  * - srand
  * - malloc
  * - free
  */
-
-int isalpha(int);
-int isdigit(int);
 
 int atoi(const char*);
 char *itoa(int, char*, int);

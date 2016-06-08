@@ -1,19 +1,6 @@
 #include "stdlib.h"
 #include "string.h"
-
-int isalpha(int c) {
-    if( (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ) {
-        return 1;
-    }
-    return 0;
-}
-
-int isdigit(int c) {
-    if( c >= '0' && c <= '9' )
-        return 1;
-    else
-        return 0;
-}
+#include "ctype.h"
 
 int atoi(const char *c) {
     int result = 0, sign = 1;
@@ -37,8 +24,7 @@ int atoi(const char *c) {
 
 char *itoa(int value, char *string, int radix) {
     /* recommended length of 'string' is 18 bytes on 16-bit and 34 on 32-bit platforms */
-    /* TODO: implement radix */
-
+    char map[] = "0123456789ABCDEF";
     int sign = 1, i = 0;
 
     if(value < 0) {
@@ -46,11 +32,16 @@ char *itoa(int value, char *string, int radix) {
     }
 
     do {
-        string[i++] = value % 10 + '0';
-    } while( (value /= 10) > 0 );
+        string[i++] = map[value % radix];
+    } while( (value /= radix) > 0 );
 
     if(sign < 0)
         string[i++] = '-';
+
+    if(radix == 16) {
+        string[i++] = 'x';
+        string[i++] = '0';
+    }
 
     return strrev(string);
 }

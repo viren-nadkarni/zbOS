@@ -2,6 +2,8 @@ SOURCES = $(wildcard *.c)
 HEADERS = $(wildcard *.h)
 OBJ = ${SOURCES:.c=.o}
 
+.PHONY: all
+
 all: kernel.bin
 
 entry.o: entry.asm
