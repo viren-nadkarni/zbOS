@@ -1,6 +1,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdarg.h"
+#include "string.h"
 #include "scr.h"
 
 int putchar(char c) {
@@ -11,7 +12,7 @@ int putchar(char c) {
 
 int printf(const char *format, ...) {
     va_list argptr;
-    char s[34], c, *str;
+    char s[48], c, *str;
     int num, outcount = 0;
 
     va_start(argptr, format);
@@ -45,6 +46,7 @@ int printf(const char *format, ...) {
                 /* TODO */
                 case 'f':
                 case 'F':
+                    term_putstr("unimplemented");
                     break;
 
                 /* string of chars */
@@ -54,9 +56,14 @@ int printf(const char *format, ...) {
                     break;
 
                 /* unsigned hex */
-                /* TODO */
+                case '#':
+                    term_putstr("0x");
+                    *format++;
                 case 'x':
                 case 'X':
+                    num = va_arg(argptr, int);
+                    itoa(num, s, 16);
+                    term_putstr(s);
                     break;
 
                 default:
