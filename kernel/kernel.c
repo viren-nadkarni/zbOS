@@ -8,7 +8,7 @@
 void kmain() {
     term_init();
 
-    printf("Initialising interrupt handler...\n");
+    printf("Initialising interrupts...\n");
     idt_init();
     irq_init();
     asm volatile ("sti");
@@ -18,10 +18,7 @@ void kmain() {
 
     /*
     asm volatile ("xchg %bx, %bx");
-    asm volatile ("int $0x5");
     */
-
-    printf("Hello from libc!\n");
 
     printf("<loop>\n");
 

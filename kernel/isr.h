@@ -37,10 +37,32 @@ extern void isr30();
 extern void isr31();
 
 struct stack_frame {
-    uint16 gs, fs, es, ds;
-    uint16 edi, esi, ebp, esp, ebx, edx, ecx, eax;
-    uint16 interrupt_no, error_code;
-    uint16 eip, cs, eflags, useresp, ss;
+    /* values pushed by individual `push` instructions */
+    uint32 gs;
+    uint32 fs;
+    uint32 es;
+    uint32 ds;
+
+    /* values pushed by `pusha` */
+    uint32 edi;
+    uint32 esi;
+    uint32 ebp;
+    uint32 esp;
+    uint32 ebx;
+    uint32 edx;
+    uint32 ecx;
+    uint32 eax;
+
+    /* values pushed in the isr handler */
+    uint32 interrupt_no;
+    uint32 error_code;
+
+    /* values pushed by the CPU */
+    uint32 eip;
+    uint32 cs;
+    uint32 eflags;
+    uint32 useresp;
+    uint32 ss;
 };
 
 void fault_handler(struct stack_frame *);
