@@ -9,11 +9,15 @@ void kmain() {
     term_init();
 
     printf("Initialising interrupts...\n");
+    /* install interrupt descriptor table */
     idt_init();
+    /* configure interrupt requests */
     irq_init();
+    /* enable interrupts */
     asm volatile ("sti");
 
     printf("Initialising timer...\n");
+    /* tell the PIT to interrupt 100 times per second */
     timer_init(100);
 
     /*

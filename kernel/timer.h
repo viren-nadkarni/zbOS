@@ -3,6 +3,6 @@
 
 #include "def.h"
 
-void timer_init(uint16);
+void timer_init(uint32);
 
 #endif
