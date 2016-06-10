@@ -1,13 +1,12 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdarg.h"
-#include "string.h"
 #include "scr.h"
 
 int putchar(char c) {
     char out[] = {c, 0};
     term_putstr(out);
-    return EXIT_SUCCESS;
+    return 1;
 }
 
 int printf(const char *format, ...) {

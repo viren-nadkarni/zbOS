@@ -25,14 +25,9 @@ char *strrev(char *string) {
 }
 
 char *strcpy(char *dest, const char *src) {
-    char *dest_orig = dest;
+    for(int i=0; src[i]!='\0'; i++)
+        dest[i] = src[i];
 
-    while(*src != 0) {
-        *dest = *src;
-        src++;
-        dest++;
-    }
-
-    return dest_orig;
+    return dest;
 }
 

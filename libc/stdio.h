@@ -9,6 +9,7 @@
  */
 
 int printf(const char*, ...);
+int putchar(char);
 
 #endif
 
