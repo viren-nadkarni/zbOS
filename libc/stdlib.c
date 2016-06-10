@@ -38,6 +38,8 @@ char *itoa(int value, char *string, int radix) {
     if(radix == 10 && sign < 0)
         string[i++] = '-';
 
+    string[i] = '\0';
+
     return strrev(string);
 }
 
