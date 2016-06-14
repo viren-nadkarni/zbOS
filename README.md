@@ -9,14 +9,14 @@ zbOS is a UNIX-clone being built from scratch.
 ### What's been done:
 
 - [x] A custom bootloader capable of switching to protected mode and bootstrapping a kernel
-- [ ] \(wip) a standard C library (libc)
+- [ ] a standard C library (libc) **(WIP)**
 - [x] Interrupt handler
 - [ ] Device drivers
   - [x] video (hardware cursor, scrolling, ASCII escapes)
   - [x] clock (PIT timer)
-  - [ ] \(wip) keyboard
+  - [x] keyboard
   - [ ] filesystem (SFS? ramdisk?)
-- [ ] Memory management (paging, heap)
+- [ ] Memory management (paging, heap) **(WIP)**
 - [ ] Process scheduling (multitasking)
 - [ ] the future (userland?)
 

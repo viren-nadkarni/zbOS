@@ -3,6 +3,7 @@
 #include "idt.h"
 #include "irq.h"
 #include "timer.h"
+
 #include "stdio.h"
 
 void kmain() {
