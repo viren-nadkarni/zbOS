@@ -4,19 +4,19 @@
 
 zbOS is a UNIX-clone being built from scratch.
 
-![zbOS in Bochs](screenshot.png)
+![zbOS in QEMU](screenshot.png)
 
 ### What's been done:
 
 - [x] A custom bootloader capable of switching to protected mode and bootstrapping a kernel
-- [ ] a standard C library (libc) **(WIP)**
+- [ ] a standard C library (libc) **WIP**
 - [x] Interrupt handler
 - [ ] Device drivers
   - [x] video (hardware cursor, scrolling, ASCII escapes)
   - [x] clock (PIT timer)
   - [x] keyboard
   - [ ] filesystem (SFS? ramdisk?)
-- [ ] Memory management (paging, heap) **(WIP)**
+- [ ] Memory management (paging, heap) **WIP**
 - [ ] Process scheduling (multitasking)
 - [ ] the future (userland?)
 
@@ -31,8 +31,8 @@ zbOS is a UNIX-clone being built from scratch.
 ### Resources:
 
 - [OSDev.org](http://wiki.osdev.org) :point_left: this is all you need
-- [Nick Blundell's OpSys Lecture](https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf)
-- [Bran's Kernel Development](http://www.osdever.net/bkerndev/index.php)
+- [Nick Blundell's OpSys Lecture Notes](https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf)
+- [Bran on Kernel Development](http://www.osdever.net/bkerndev/index.php)
 - [JamesM's kernel development tutorial](http://www.jamesmolloy.co.uk/tutorial_html/)
 - [linux-insides](https://github.com/0xAX/linux-insides)
 
