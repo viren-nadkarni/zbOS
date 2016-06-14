@@ -8,23 +8,23 @@
 void kmain() {
     term_init();
 
-    printf("Initialising interrupts...\n");
     /* install interrupt descriptor table */
+    printf("Initialising interrupts...\n");
     idt_init();
-    /* configure interrupt requests */
     irq_init();
-    /* enable interrupts */
-    asm volatile ("sti");
+    asm volatile ("sti"); /* enable interrupts */
 
     printf("Initialising timer...\n");
-    /* tell the PIT to interrupt 100 times per second */
-    timer_init(100);
+    timer_init(100); /* tell the PIT to interrupt 100 times per second */
+
+    printf("Initialising keyboard...\n");
+    kbd_init(); /* register keyboard IRQ */
 
     /*
     asm volatile ("xchg %bx, %bx");
     */
 
-    printf("<loop>\n");
+    printf("...\n");
 
     while(1);
 }

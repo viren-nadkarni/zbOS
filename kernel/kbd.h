@@ -1,6 +1,6 @@
-#ifndef KBD_H
-#define KBD_H
+#ifndef KBD_H_
+#define KBD_H_
 
-
+void kbd_init(void);
 
 #endif
