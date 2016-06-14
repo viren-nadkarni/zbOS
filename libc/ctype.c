@@ -48,14 +48,14 @@ int isxdigit(int c) {
 }
 
 int tolower(int c) {
-    if(isalpha(c))
-        return (c + 20);
+    if(isalpha(c) && isupper(c))
+        return (c + 32);
     return c;
 }
 
 int toupper(int c) {
-    if(isalpha(c))
-        return (c - 20);
+    if(isalpha(c) && islower(c))
+        return (c - 32);
     return c;
 }
 
