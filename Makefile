@@ -2,7 +2,10 @@ export CCFLAGS = -fno-builtin -m32 -Wall -nostartfiles -nostdlib -nostdinc -std=
 export ASFLAGS = -f elf32
 export LDFLAGS = -melf_i386 -Ttext 0x1000 --oformat binary # -T linker.ld
 
-.PHONY: all run debug qemu bochs clean libc zbos kernel bootloader
+export KERNEL_INCDIR = $(shell pwd)/kernel/include
+export LIBC_INCDIR = $(shell pwd)/libc/include
+
+.PHONY: all run debug qemu bochs clean libc zbos kernel bootloader prereq
 
 all: libc zbos
 
@@ -19,18 +22,19 @@ bochs: all
 clean:
 	find . -iname "*.img" -o -iname "*.bin" -o -iname "*.o" -o -iname "*.a" | xargs rm -v
 
-libc:
+prereq:
+	mkdir -p build
+
+libc: prereq
 	cd libc; make
 
-zbos: kernel bootloader
-	mkdir -p build
+zbos: kernel bootloader prereq
 	dd if=/dev/zero of=build/zero.img bs=64K count=1
-	cat boot/boot.img kernel/kernel.bin build/zero.img > build/zbos.img
-	rm build/zero.img
+	cat build/boot.img build/kernel.bin build/zero.img > build/zbos.img
 
-kernel:
+kernel: prereq
 	cd kernel; make
 
-bootloader:
+bootloader: prereq
 	cd boot; make
 
