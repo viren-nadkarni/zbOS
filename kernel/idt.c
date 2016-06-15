@@ -21,7 +21,7 @@ struct idt_ptr idtp;
 
 void idt_init() {
     idtp.length = (sizeof(struct idt_entry) * 256) - 1;
-    idtp.base = &idt;
+    idtp.base = (uint32)&idt;
 
     /* TEMP HACK: use memset instead to clear idt memory */
     uint8 *ptr = (uint8*)&idt;

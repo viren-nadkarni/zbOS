@@ -11,16 +11,16 @@ int putchar(char c) {
 
 int printf(const char *format, ...) {
     va_list argptr;
-    char s[48], c, *str;
-    int num, outcount = 0;
+    char s[48], *str;
+    int c, num, outcount = 0;
 
     va_start(argptr, format);
 
     while(*format != 0) {
-        if(*format != '%')
+        if(*format != '%') {
             putchar(*format);
-        else {
-            *format++;
+        } else {
+            format++;
 
             switch(*format) {
                 case '%':
@@ -29,7 +29,7 @@ int printf(const char *format, ...) {
 
                 /* char */
                 case 'c':
-                    c = va_arg(argptr, char);
+                    c = va_arg(argptr, int);
                     putchar(c);
                     break;
 
@@ -57,7 +57,7 @@ int printf(const char *format, ...) {
                 /* unsigned hex */
                 case '#':
                     term_putstr("0x");
-                    *format++;
+                    format++;
                 case 'x':
                 case 'X':
                     num = va_arg(argptr, int);
@@ -69,7 +69,7 @@ int printf(const char *format, ...) {
                     break;
             }
         }
-        *format++;
+        format++;
         outcount++;
     }
     va_end(argptr);
