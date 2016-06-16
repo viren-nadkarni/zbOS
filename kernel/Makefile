@@ -13,6 +13,8 @@ entry.o: entry.asm
 	gcc $(CCFLAGS) -o $@ $< -I$(KERNEL_INCDIR) -I$(LIBC_INCDIR)
 
 kernel.bin: entry.o kernel.o ${OBJ}
-	ld $(LDFLAGS) -o $@ $^ -L../build -lc
+	ld $(LDFLAGS) -o kernel.elf $^ -L../build -lc
+	objcopy --only-keep-debug kernel.elf kernel.sym
+	objcopy -O binary kernel.elf $@
 	cp $@ ../build
 

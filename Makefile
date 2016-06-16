@@ -1,6 +1,6 @@
 export CCFLAGS = -fno-builtin -m32 -Wall -nostartfiles -nostdlib -nostdinc -std=gnu99 -g -c -O0
 export ASFLAGS = -f elf32
-export LDFLAGS = -melf_i386 -Ttext 0x1000 --oformat binary # -T linker.ld
+export LDFLAGS = -melf_i386 -Ttext 0x1000 --oformat elf32-i386 -T link.ld
 
 export KERNEL_INCDIR = $(shell pwd)/kernel/include
 export LIBC_INCDIR = $(shell pwd)/libc/include

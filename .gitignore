@@ -41,3 +41,4 @@ bochs.out
 # builds
 *.img
 *.bin
+*.sym

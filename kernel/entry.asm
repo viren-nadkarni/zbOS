@@ -1,5 +1,6 @@
 [bits 32]
 [extern kmain]
+_start:
     call kmain
     jmp $               ; this should happen when returning from kernel main
                         ; shutdown?
