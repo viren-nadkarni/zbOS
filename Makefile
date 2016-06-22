@@ -1,4 +1,4 @@
-export CCFLAGS = -fno-builtin -m32 -Wall -nostartfiles -nostdlib -nostdinc -std=gnu99 -g -c -O0
+export CCFLAGS = -fno-builtin -m32 -Wall -nostartfiles -ffreestanding -nostdlib -nostdinc -std=gnu99 -g -c -O0
 export ASFLAGS = -f elf32
 export LDFLAGS = -melf_i386 -Ttext 0x1000 --oformat elf32-i386 -T link.ld
 
