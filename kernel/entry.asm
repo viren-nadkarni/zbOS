@@ -75,7 +75,7 @@ irq_common_stub:
     iret                ; pop cs, eip, eflags, ss, esp
 
 ; interrupt service routines
-; interrupt 0: division by zero
+; interrupt 0: divide by zero
 [global isr0]
 isr0:
     cli
@@ -91,7 +91,7 @@ isr1:
     push byte 1
     jmp isr_common_stub
 
-; interrupt 2: non maskable interrupt
+; interrupt 2: non-maskable interrupt
 [global isr2]
 isr2:
     cli
@@ -107,7 +107,7 @@ isr3:
     push byte 3
     jmp isr_common_stub
 
-; interrupt 4: into detected overflow
+; interrupt 4: overflow
 [global isr4]
 isr4:
     cli
@@ -115,7 +115,7 @@ isr4:
     push byte 4
     jmp isr_common_stub
 
-; interrupt 5: out of bounds
+; interrupt 5: bound range exceeded
 [global isr5]
 isr5:
     cli
@@ -131,7 +131,7 @@ isr6:
     push byte 6
     jmp isr_common_stub
 
-; interrupt 7: no coprocessor
+; interrupt 7: device not available
 [global isr7]
 isr7:
     cli
@@ -154,7 +154,7 @@ isr9:
     push byte 9
     jmp isr_common_stub
 
-; interrupt 10: bad tss
+; interrupt 10: invalid tss
 [global isr10]
 isr10:
     cli
@@ -168,7 +168,7 @@ isr11:
     push byte 11
     jmp isr_common_stub
 
-; interrupt 12: stack fault
+; interrupt 12: stack segment fault
 [global isr12]
 isr12:
     cli
@@ -189,7 +189,7 @@ isr14:
     push byte 14
     jmp isr_common_stub
 
-; interrupt 15: unknown interrupt
+; interrupt 15: reserved
 [global isr15]
 isr15:
     cli
@@ -197,7 +197,7 @@ isr15:
     push byte 15
     jmp isr_common_stub
 
-; interrupt 16: coprocessor fault
+; interrupt 16: x87 floating-point exception
 [global isr16]
 isr16:
     cli
@@ -209,7 +209,6 @@ isr16:
 [global isr17]
 isr17:
     cli
-    push byte 0
     push byte 17
     jmp isr_common_stub
 
@@ -221,7 +220,7 @@ isr18:
     push byte 18
     jmp isr_common_stub
 
-; interrupt 19-31: reserved
+; interrupt 19: simd floating-point exception
 [global isr19]
 isr19:
     cli
@@ -229,6 +228,7 @@ isr19:
     push byte 19
     jmp isr_common_stub
 
+; interrupt 20: virtualization exception
 [global isr20]
 isr20:
     cli
@@ -236,6 +236,7 @@ isr20:
     push byte 20
     jmp isr_common_stub
 
+; interrupt 21-29: reserved
 [global isr21]
 isr21:
     cli
@@ -299,13 +300,14 @@ isr29:
     push byte 29
     jmp isr_common_stub
 
+; interrupt 30: security exception
 [global isr30]
 isr30:
     cli
-    push byte 0
     push byte 30
     jmp isr_common_stub
 
+; interrupt 32: reserved
 [global isr31]
 isr31:
     cli

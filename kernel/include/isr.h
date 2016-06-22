@@ -47,7 +47,7 @@ struct stack_frame {
     uint32 edi;
     uint32 esi;
     uint32 ebp;
-    uint32 esp;
+    uint32 esp; /* ignored */
     uint32 ebx;
     uint32 edx;
     uint32 ecx;

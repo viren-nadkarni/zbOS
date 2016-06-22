@@ -3,25 +3,27 @@
 
 void fault_handler(struct stack_frame *sf) {
      char *exception_message[] = {
-        "Division by Zero",
+        "Divide-by-zero Error",
         "Debug",
-        "Non Maskable Interrupt",
+        "Non-maskable Interrupt",
         "Breakpoint",
-        "Into Detected Overflow",
-        "Out of Bounds",
+        "Overflow",
+        "Bound Range Exceeded",
         "Invalid Opcode",
-        "No Coprocessor",
+        "Device Not Available",
         "Double Fault",
         "Coprocessor Segment Overrun",
-        "Bad TSS",
+        "Invalid TSS",
         "Segment Not Preset",
-        "Stack Fault",
+        "Stack-Segment Fault",
         "General Protection Faul",
         "Page Fault",
-        "Unknown Interrupt",
-        "Coprocessor Fault",
+        "Reserved",
+        "x87 Floating-Point Exception",
         "Alignment Check",
         "Machine Check",
+        "SIMD Floating-Point Exception",
+        "Virtualization Exception",
         "Reserved",
         "Reserved",
         "Reserved",
@@ -31,14 +33,12 @@ void fault_handler(struct stack_frame *sf) {
         "Reserved",
         "Reserved",
         "Reserved",
-        "Reserved",
-        "Reserved",
-        "Reserved",
+        "Security Exception",
         "Reserved",
     };
 
     if( (sf->interrupt_no) < 32 )
-        printf("[!] %s Exception\n", exception_message[ sf->interrupt_no ]);
+        printf("[!] Exception (%s)\n", exception_message[ sf->interrupt_no ]);
     else
         printf("[!] Exception\n");
     printf("[!] System Halted\n");
