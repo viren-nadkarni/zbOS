@@ -21,21 +21,19 @@
     call print_str
     call pm_switch
 
-    jmp $                           ; hang. this shouldn't happen
+    jmp $                           ; hang. this should never happen
 
 load_kernel:
     mov bx, KERNEL_OFFSET
     mov dh, 16
     mov dl, [BOOT_DISK]
     call disk_read
-
     ret
 
 [bits 32]
 
 pm_begin:
    jmp KERNEL_OFFSET
-
 
 BOOT_DISK:
     db 0
@@ -57,6 +55,6 @@ PROT_MODE_MSG:
 %include "gdt.asm"
 %include "pm.asm"
  
-times 510-($-$$) db 0
-dw 0xaa55
+times 510-($-$$) db 0               ; empty
+dw 0xaa55                           ; magic number
 

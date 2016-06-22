@@ -19,8 +19,5 @@ pm_init:
     mov fs, ax
     mov gs, ax
 
-    mov ebp, 0x9000
-    mov esp, ebp
-
     call pm_begin
 

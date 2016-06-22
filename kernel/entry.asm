@@ -1,9 +1,14 @@
 [bits 32]
+[global start]
 [extern kmain]
-_start:
+start:
+    ; initialise stack
+    mov esp, sys_stack
     call kmain
     jmp $               ; this should happen when returning from kernel main
                         ; shutdown?
+
+; multiboot headers to be put here
 
 ; loads interrupt descriptor table
 [global idt_load]
@@ -428,4 +433,9 @@ irq15:
     push byte 0
     push byte 47
     jmp irq_common_stub
+
+; bss definition
+section .bss
+    resb 8192               ; stack grows downwards. so reserve space,
+sys_stack:                  ; and then declare the identifier
 

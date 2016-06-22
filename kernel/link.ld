@@ -1,31 +1,30 @@
-ENTRY(_start)
+ENTRY(start)
+_start_ = 0x1000;
 
 SECTIONS
 {
-	. = 0x1000;
-
-	.text BLOCK(1K) : ALIGN(1K)
+	.text _start_ :
 	{
+        _code_ = .;
 		*(.text)
-	}
-
-	/* Read-only data. */
-	.rodata BLOCK(1K) : ALIGN(1K)
-	{
 		*(.rodata)
+        . = ALIGN(4K);
 	}
 
-	/* Read-write data (initialized) */
-	.data BLOCK(1K) : ALIGN(1K)
+	.data :
 	{
+        _data_ = .;
 		*(.data)
+        . = ALIGN(4K);
 	}
 
-	/* Read-write data (uninitialized) and stack */
-	.bss BLOCK(1K) : ALIGN(1K)
+	.bss :
 	{
-		*(COMMON)
+        _bss_ = .;
 		*(.bss)
+        . = ALIGN(8K);
 	}
+
+    _end_ = .;
 }
 
