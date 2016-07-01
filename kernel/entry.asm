@@ -2,13 +2,35 @@
 [global start]
 [extern kmain]
 start:
-    ; initialise stack
-    mov esp, sys_stack
+    mov esp, sys_stack  ; initialise stack
+
     call kmain
     jmp $               ; this should happen when returning from kernel main
                         ; shutdown?
 
 ; multiboot headers to be put here
+
+; paging
+[global paging_enable]
+paging_enable:
+    push ebp
+    mov ebp, esp
+    mov eax, cr0
+    or eax, 0x80000000
+    mov cr0, eax
+    mov esp, ebp
+    pop ebp
+    ret
+
+[global paging_load_directory]
+paging_load_directory:
+    push ebp
+    mov ebp, esp
+    mov eax, [ebp+8]
+    mov cr3, eax
+;    mov esp, ebp
+    pop ebp
+    ret
 
 ; loads interrupt descriptor table
 [global idt_load]

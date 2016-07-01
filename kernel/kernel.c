@@ -3,6 +3,7 @@
 #include "idt.h"
 #include "irq.h"
 #include "timer.h"
+#include "paging.h"
 
 #include "stdio.h"
 
@@ -24,6 +25,12 @@ void kmain() {
     /*
     asm volatile ("xchg %bx, %bx");
     */
+
+    printf("Enabling paging...\n");
+    paging_init();
+
+    uint32 *ptr = (uint32*) 0xA0000000;
+    uint32 page_fault = *ptr;
 
     printf("...\n");
 

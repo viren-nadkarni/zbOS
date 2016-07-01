@@ -32,7 +32,10 @@ zbOS is a UNIX-clone being built from scratch.
 
 - [OSDev.org](http://wiki.osdev.org) :point_left: this is all you need
 - [Nick Blundell's OpSys Lecture Notes](https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf)
-- [Bran on Kernel Development](http://www.osdever.net/bkerndev/index.php)
+- [](http://www.brokenthorn.com/Resources/OSDevIndex.html)
+- [](http://pages.cs.wisc.edu/~remzi/OSTEP/)
+- [Bran's Kernel Development Tutorial](http://www.osdever.net/bkerndev/index.php)
 - [JamesM's kernel development tutorial](http://www.jamesmolloy.co.uk/tutorial_html/)
 - [linux-insides](https://github.com/0xAX/linux-insides)
+- [Samy Pesse's How to make an OS](https://www.gitbook.com/book/samypesse/how-to-create-an-operating-system/details)
 
