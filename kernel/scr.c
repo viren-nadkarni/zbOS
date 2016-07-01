@@ -152,3 +152,10 @@ void term_scroll() {
     /* move the cursor to the beginning of last line */
     cursor_offset -= VGA_WIDTH;
 }
+
+void term_seek(int offset) {
+    cursor_offset += offset;
+
+    term_setcursor((cursor_offset / VGA_WIDTH), (cursor_offset % VGA_WIDTH));
+}
+

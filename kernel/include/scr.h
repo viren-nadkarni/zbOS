@@ -11,5 +11,6 @@ void term_putstr(char*);
 
 void term_setcursor(uint8, uint8);
 void term_getcursor(uint8*, uint8*);
+void term_seek(int);
 
 #endif
