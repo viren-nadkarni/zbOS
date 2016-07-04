@@ -31,3 +31,11 @@ char *strcpy(char *dest, const char *src) {
     return dest;
 }
 
+char *strcat(char *dest, const char *src) {
+    int s=strlen(dest);
+    for(int i=0; src[i]!='\0'; i++) {
+        dest[i+s] = src[i];
+    }
+
+    return dest;
+}
