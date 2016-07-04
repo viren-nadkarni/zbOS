@@ -42,28 +42,13 @@ void fault_handler(struct stack_frame *sf) {
     else
         printf("[!] Exception\n");
     printf("[!] System Halted\n");
-    printf("                  error_code: %d\r", sf->error_code);
-    printf("> interrupt: %d\n", sf->interrupt_no);
-
-    printf("                  ebx: %#X\r", sf->ebx);
-    printf("> eax: %#X\n", sf->eax);
-    printf("                  edx: %#X\r", sf->edx);
-    printf("> ecx: %#X\n", sf->ecx);
-
-    printf("                  edi: %#X\r", sf->edi);
-    printf("> esi: %#X\n", sf->esi);
-    printf("                  esp: %#X\r", sf->esp);
-    printf("> ebp: %#X\n", sf->ebp);
-
-    printf("                  eflags: %#X\r", sf->eflags);
-    printf("> eip: %#X\n", sf->eip);
-
-    printf("                  ds: %#X\r", sf->ds);
-    printf("> cs: %#X\n", sf->cs);
-    printf("                  fs: %#X\r", sf->fs);
-    printf("> es: %#X\n", sf->es);
-    printf("                  gs: %#X\r", sf->gs);
-    printf("> ss: %#X\n", sf->ss);
+    printf("INT=%d ERR=%d\n", sf->interrupt_no, sf->error_code);
+    printf("EAX=%08x EBX=%08x ECX=%08x EDX=%08x\n", sf->eax, sf->ebx, sf->ecx, sf->edx);
+    printf("ESI=%08x EDI=%08x EBP=%08x ESP=%08x\n", sf->esi, sf->edi, sf->ebp, sf->esp);
+    printf("EIP=%08x EFL=%08x\n", sf->eip, sf->eflags);
+    printf("CS=%04x DS=%04x\n", sf->cs, sf->ds);
+    printf("ES=%04x FS=%04x\n", sf->es, sf->fs);
+    printf("SS=%04x GS=%04x\n", sf->ss, sf->gs);
 
     while(1);
 }
